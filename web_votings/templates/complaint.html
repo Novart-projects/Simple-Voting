@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Голосования{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+                <div class="card-header">Расскажите пожалуйста, чем вы не довольны</div>
+                <div class="card-body">
+                    <form method="post" class="form-signin" action="/push_complaint/{{voting_id}}" id="qwerty">
+                         {%csrf_token%}
+                        <div class="form-group row">
+                            <label for="text321" class="col-md-4 col-form-label text-md-right">Тема жалобы</label>
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" id="text321" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="text123" class="col-md-4 col-form-label text-md-right">Подробное описание жалобы</label>
+                            <div class="col-md-6">
+                            <textarea class="form-control" id="text123" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                  Отправить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

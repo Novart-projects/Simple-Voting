@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Голосования{% endblock %}
+{% block content %}
+            <div class="row justify-content-center">
+                <div class="col-md-8 p-5">
+                    <h1>Открытые голосования</h1>
+                    {% for i in votings %}
+                    {% if i.status == 1 %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.name}}</h5>
+                            <p class="card-text">{{i.description}}</p>
+                            <a href="/vote/{{i.id}}/" class="btn btn-primary">Голосовать</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div> <!-- col -->
+            </div> <!-- row -->
+
+{% endblock %}

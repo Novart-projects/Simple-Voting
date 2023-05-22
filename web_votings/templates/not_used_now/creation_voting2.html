@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Голосования{% endblock %}
+{% block content %}
+     <div class="row justify-content-center">
+         <div class="col-md-8 p-5">
+             <div class="card">
+                 <div class="card-header">Создайте голосование</div>
+                 <div class="card-body">
+                     <form method="post" class="form-signin" action="/createvote3/{{voting_id}}/">
+                          {%csrf_token%}
+                         {% for i in number %}
+                         <div class="form-group row">
+                             <label for="text321" class="col-md-4 col-form-label text-md-right">Вариант {{i}}</label>
+                             <div class="col-md-6">
+                             <input type="text" class="form-control" id="text321" name="answer">
+                             </div>
+                         </div>
+                         {% endfor %}
+                          <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                  Создать голосование
+                            </button>
+                    </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+{% endblock %}

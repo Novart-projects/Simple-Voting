@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+ <div class="row justify-content-center">
+     <div class="col-md-8 p-5">
+         <h1>Мой профиль</h1>
+         <br/>
+         <div class="card">
+             <div class="card-body">
+                <h5 class="card-title">Имя пользователя</h5>
+                    <p class="card-text">
+                        {{user.username}}
+                    </p>
+                <h5 class="card-title">Фамилия</h5>
+                    <p class="card-text">
+                        {{user.last_name}}
+                    </p>
+                <h5 class="card-title">Имя</h5>
+                    <p class="card-text">
+                        {{user.first_name}}
+                    </p>
+                <h5 class="card-title">Адрес электронной почты</h5>
+                    <p class="card-text">
+                        {{user.email}}
+                    </p>
+                <a href="/edit_profile/" class="btn btn-primary">Редактировать</a>
+             </div>
+         </div>
+         <h4>Мои голосования:</h4>
+            {% for i in votings %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.name}}</h5>
+                        <p class="card-text">{{i.description}}</p>
+                        {% if i.status != 1 %}
+                        <a href="/edit_voting/{{i.id}}" class="btn btn-primary">Редактировать</a>
+                        {% else %}
+                        <a href="/vote/{{i.id}}" class="btn btn-primary">Открыть</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+         <h4>История голосованиий:</h4>
+            {% for i in my_votings %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.name}}</h5>
+                        <p class="card-text">{{i.description}}</p>
+                        <a href="/vote/{{i.id}}" class="btn btn-primary">Открыть</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <h4>Мои жалобы:</h4>
+            {% for i in complaints %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.theme}}</h5>
+                        <a href="/my_complaint/{{i.id}}" class="btn btn-primary">Открыть</a>
+                    </div>
+                </div>
+            {% endfor %}
+         <br/>
+     </div> <!-- col -->
+ </div> <!-- row -->
+{% endblock %}

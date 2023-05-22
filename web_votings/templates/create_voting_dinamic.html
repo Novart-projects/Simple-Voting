@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Создать голосование{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+                <div class="card-header">Создайте голосование</div>
+                <div class="card-body">
+                    <form method="post" class="form-signin" action="/createvote/createvotig/" id="qwerty">
+                         {%csrf_token%}
+                        <div class="form-group row">
+                            <label for="text321" class="col-md-4 col-form-label text-md-right">Тема опроса</label>
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" id="text321" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="text123" class="col-md-4 col-form-label text-md-right">Описание опроса</label>
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" id="text123" name="description">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="select123" class="col-md-4 col-form-label text-md-right">Тип опроса</label>
+                            <div class="col-md-6">
+                            <select id="select123" class="form-control" name="type">
+                                <option>Выбор одного варианта</option>
+                                <option>Выбор нескольких вариантов</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="form1">
+                            <label for="form1" class="col-md-4 col-form-label text-md-right">Вариант</label>
+                            <div class="col-md-6">
+                               <input type="text" class="form-control" id="answer123" name="answer">
+                            </div>
+                            <button type="button" onclick="add_field()" value="+" id="addAnswer" class="btn btn-success">+</button>
+                        </div>
+                        <input type="hidden" id="mytext" value="0" name="mytext">
+                         <div class="col-md-6 offset-md-4">
+                           <button class="btn btn-primary" onclick="this.submit();" id="sokhranit">
+                                Сохранть
+                           </button>
+                             <button class="btn btn-primary" onclick="document.getElementById('mytext').value = '1'; this.submit();">
+                                Опубликовать
+                           </button>
+
+                   </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+       function add_field(){
+           //div.form-group.row
+
+           let elements = document.querySelector('#qwerty').querySelectorAll('div#answer')
+           let currentCountElements = elements.length
+           if(currentCountElements+1<10){
+           let globalDiv = document.createElement("div")
+           globalDiv.classList.add('form-group')
+           globalDiv.classList.add('row')
+           globalDiv.setAttribute('id', 'answer')
+           document.querySelector('#qwerty').insertBefore(globalDiv, mytext)
+
+           let lbl = document.createElement("label")
+           lbl.classList.add('col-md-4')
+           lbl.classList.add('col-form-label')
+           lbl.classList.add('text-md-right')
+           lbl.setAttribute('for', 'answer')
+           currentCountElements+=2;
+           lbl.innerHTML = 'Вариант';
+           globalDiv.appendChild(lbl)
+
+           let innerDiv = document.createElement("div")
+           innerDiv.classList.add('col-md-6')
+           globalDiv.appendChild(innerDiv)
+
+           let inp = document.createElement('input')
+           inp.setAttribute('type', 'text')
+           inp.setAttribute('name', 'answer')
+           inp.setAttribute('id', 'answer'+currentCountElements)
+           inp.classList.add('form-control')
+           innerDiv.appendChild(inp)
+
+           let deleteBtn = document.createElement('input')
+           deleteBtn.setAttribute('type', 'button')
+           deleteBtn.value = "-"
+           deleteBtn.classList.add("btn")
+           deleteBtn.classList.add("btn-danger")
+           deleteBtn.onclick = function(e){
+               e.currentTarget.parentElement.remove()
+           }
+           globalDiv.appendChild(deleteBtn)
+           }
+           }
+       </script>
+{% endblock %}

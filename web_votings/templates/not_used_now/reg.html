@@ -1,0 +1,56 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Simple Voting - регистрациия</title>
+    <!-- Загрузка статики -->
+    <link rel="stylesheet" href="./static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/custom/footer.css">
+    <script src="./static/jquery/dist/jquery.min.js"></script>
+    <script src="./static/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="/"><span style="color:midnightblue">Simple Voting</span></a>
+        <span class="navbar-text">
+            Первая честная платформа голосований
+        </span>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 p-5">
+                    <div class="card">
+                        <div class="card-header">Авторизуйтесь для участия в голосовании</div>
+                        <div class="card-body">
+                            <form method="post" action="/auth/login/">
+                                <div class="form-group row">
+                                    <label for="id_username" class="col-md-4 col-form-label text-md-right">Имя пользователя</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="username" autofocus class="form-control" required id="id_username">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id_password" class="col-md-4 col-form-label text-md-right">Пароль</label>
+                                    <div class="col-md-6">
+                                        <input type="password" name="password" class="form-control" required id="id_password">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">Войти</button>
+                                </div>
+                            </form>
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                </div> <!-- col -->
+            </div> <!-- row -->
+        </div>
+    </main>
+    <footer class="footer">
+        <span class="text-muted">Simple Voting © 2020, все права защищены.</span>
+    </footer>
+</body>
+</html>

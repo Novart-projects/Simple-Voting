@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{voting.name}}{% endblock %}
+{% block content %}
+            <div class="row justify-content-center">
+                <div class="col-md-8 p-5">
+                    <h1>{{voting.name}}</h1>
+                    <p>{{voting.description}}</p>
+                    <br />
+                    <h5>Ваш выбор?</h5>
+                    <form method="post" action="/dovote/">
+                        {%csrf_token%}
+                        {% if voting.type == 1%}
+                        {%for i in answers%}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answer" id="exampleRadios{{i.id}}" value="{{i.id}}">
+                            <label class="form-check-label" for="exampleRadios{{i.id}}">
+                                {{i.answer_variant}}
+                            </label>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {%for i in answers%}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="answer" id="exampleCheckbox{{i.id}}" value="{{i.id}}">
+                            <label class="form-check-label" for="exampleCheckbox{{i.id}}">
+                                {{i.answer_variant}}
+                            </label>
+                        </div>
+                        {%endfor%}
+                        {%endif%}
+                        <br />
+                        <button type="submit" class="btn btn-primary">Отдать голос</button>
+                        <br />
+                         <p style="color:grey; font-size: 9pt; padding-top: 20px;">* Если вы считаете, что содержимое голосования противоречит общечеловеческим нормам, то вы можете <a href="/complaint/{{voting.id}}">пожаловаься на голосование</a></p>
+
+                    </form>
+                </div> <!-- col -->
+            </div> <!-- row -->
+{% endblock %}

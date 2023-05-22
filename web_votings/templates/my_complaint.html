@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Голосования{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{complaint.theme}}</h5>
+                        <p class="card-text">{{complaint.desc}}</p>
+                        {% if complaint.stat == 0 %}
+                        <p class="card-text">ождает рассмотрения</p>
+                        {% endif %}
+                        {% if complaint.stat == 1 %}
+                        <p class="card-text">ождает рассмотрения</p>
+                        {% endif %}
+                        {% if complaints.stat != None%}
+                        <p class="card-text">{{complaint.ans}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
